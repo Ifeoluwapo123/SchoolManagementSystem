@@ -1,8 +1,10 @@
 package com.management.school;
 
+import com.management.school.interfaces.IApplicant;
+
 import java.util.Scanner;
 
-public class Applicant {
+public class Applicant implements IApplicant {
 
     private String applicantName;
     private int applicantAge;

@@ -1,11 +1,12 @@
 package com.management.school;
 
 import com.management.school.baseclasses.Person;
+import com.management.school.interfaces.INonTeachingStaff;
 import com.management.school.utilities.ApplicantData;
 
 import java.util.ArrayList;
 
-public class NonTeachingStaff extends Person {
+public class NonTeachingStaff extends Person implements INonTeachingStaff {
 
     public NonTeachingStaff(int id, String name, String password, String email, String gender) {
         super(id, name, password, email, gender);
@@ -104,9 +105,9 @@ public class NonTeachingStaff extends Person {
 
     @Override
     public String getPersonInformation() {
-        String studentInfo = "Name: "+getName()+"\nStaff Id: "+getId()+
+        String staffInfo = "Name: "+getName()+"\nStaff Id: "+getId()+
                 "\nEmail: "+getEmail()+"\nGender: "+getGender();
-        return studentInfo;
+        return staffInfo;
     }
 
 }

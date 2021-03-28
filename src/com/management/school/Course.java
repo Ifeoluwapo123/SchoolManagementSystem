@@ -2,12 +2,13 @@ package com.management.school;
 
 import com.management.school.baseclasses.CourseContents;
 import com.management.school.enums.Courses;
+import com.management.school.interfaces.ICourse;
 import com.management.school.utilities.Display;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Course extends CourseContents {
+public class Course extends CourseContents implements ICourse {
 
     private static String registeredCourseName;
     private static String message = "You've successfully registered for ";
@@ -57,10 +58,6 @@ public class Course extends CourseContents {
                 System.out.println("Retry again\n");
         }
     }
-
-//    public static ArrayList<String> addCourses(String courseName, String Topic){
-//
-//    }
 
     public static String getRegisteredCourseName(){
         return registeredCourseName;

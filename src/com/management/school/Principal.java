@@ -114,9 +114,9 @@ public class Principal extends Person implements IAdmin {
 
     @Override
     public String getPersonInformation() {
-        String studentInfo = "Name: "+getName()+"\nPrincipal Id: "+getId()+
+        String principalInfo = "Name: "+getName()+"\nPrincipal Id: "+getId()+
                 "\nEmail: "+getEmail()+"\nGender: "+getGender();
-        return studentInfo;
+        return principalInfo;
     }
 
 }

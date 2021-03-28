@@ -1,9 +1,11 @@
 package com.management.school;
 
+import com.management.school.interfaces.IClass;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Class {
+public class Class implements IClass {
     private static ArrayList<String> classes;
 
     public Class(){

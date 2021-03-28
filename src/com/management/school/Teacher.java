@@ -2,11 +2,12 @@ package com.management.school;
 
 import com.management.school.baseclasses.Person;
 import com.management.school.enums.Courses;
+import com.management.school.interfaces.ITeacher;
 import com.management.school.utilities.ApplicantData;
 
 import java.util.ArrayList;
 
-public class Teacher extends Person {
+public class Teacher extends Person implements ITeacher {
 
     public Teacher(int id, String name, String password, String email, String gender) {
         super(id, name, password, email, gender);
@@ -81,9 +82,9 @@ public class Teacher extends Person {
 
     @Override
     public String getPersonInformation() {
-        String studentInfo = "Name: "+name+"\nTeacher Id: "+id+
+        String teacherInfo = "Name: "+name+"\nTeacher Id: "+id+
                 "\nEmail: "+email+"\nGender: "+gender;
-        return studentInfo;
+        return teacherInfo;
     }
 
 }
