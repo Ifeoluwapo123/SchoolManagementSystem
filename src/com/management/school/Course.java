@@ -16,7 +16,6 @@ public class Course extends CourseContents {
         super();
     }
 
-
     public static void loadCoursesName() {
         Scanner scanner = new Scanner(System.in);
         String newCourse = scanner.next().toUpperCase();
@@ -59,9 +58,9 @@ public class Course extends CourseContents {
         }
     }
 
-    public static ArrayList<String> createCourses(String courseName, ArrayList<String> course){
-        return course;
-    }
+//    public static ArrayList<String> addCourses(String courseName, String Topic){
+//
+//    }
 
     public static String getRegisteredCourseName(){
         return registeredCourseName;

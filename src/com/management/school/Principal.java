@@ -3,9 +3,8 @@ package com.management.school;
 import com.management.school.baseclasses.Person;
 import com.management.school.enums.Roles;
 import com.management.school.interfaces.IAdmin;
-import com.management.school.utilities.Ids;
+import com.management.school.utilities.ApplicantData;
 
-import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,7 +16,7 @@ public class Principal extends Person implements IAdmin {
 
 
     @Override
-    public int admitApplicant(String roles, int age) {
+    public int admitApplicant(String name, String roles, int age) {
         Roles value;
         Random r = new Random();
 
@@ -35,22 +34,22 @@ public class Principal extends Person implements IAdmin {
             case STUDENT:
                 if(age >= 7 && age <= 25){
                     randInt = Math.abs(r.nextInt()) % 680 + 14;
-                    Ids.setIdList(randInt);
-                    System.out.print("Your Student id is "+
-                            randInt+ "\nLogin with it to accept admission\n");
+                    ApplicantData.setIdList(randInt);
+                    System.out.print("Congratulations "+name+"!!! Your Student id is "+
+                            randInt+ "\nLogin with it to accept admission, You can update your name when you login \n");
                 }else {
-                    System.out.println("Sorry we can't further your admission as student");
+                    System.out.println("Sorry "+name+", we can't further your admission as a student");
                 }
                 break;
             case TEACHER:
             case NON_TEACHING_STAFF:
                 if(age >= 24 && age <= 65 ){
                     randInt = Math.abs(r.nextInt()) % 680 + 14;
-                    Ids.setIdList(randInt);
-                    System.out.print("Your Staff id is "+
-                            randInt+ "\nLogin with it to accept an appointment\n");
+                    ApplicantData.setIdList(randInt);
+                    System.out.print("Congratulations "+name+", Your Staff id is "+
+                            randInt+ "\nLogin with it to accept an appointment, You can update your name when you login\n");
                 }else {
-                    System.out.println("Sorry we can't further your appointment");
+                    System.out.println("Sorry "+name+", we can't further your appointment");
                 }
                 break;
         }
@@ -68,7 +67,7 @@ public class Principal extends Person implements IAdmin {
         System.out.println("Student: "+student.getName()+" has been expelled from this School,\n"+
                 "Any notice of his presence in the school premises should be report");
 
-        ArrayList<Integer> ids = Ids.getIdList();
+        ArrayList<Integer> ids = ApplicantData.getIdList();
         boolean validId = false;
 
         for (int i = 0; i < ids.size(); i++) {
@@ -85,7 +84,7 @@ public class Principal extends Person implements IAdmin {
         System.out.println("Teacher: "+teacher.getName()+" has been expelled from this School,\n"+
                 "Any notice of his presence in the school premises should be report");
 
-        ArrayList<Integer> ids = Ids.getIdList();
+        ArrayList<Integer> ids = ApplicantData.getIdList();
         boolean validId = false;
 
         for (int i = 0; i < ids.size(); i++) {
@@ -96,13 +95,28 @@ public class Principal extends Person implements IAdmin {
         }
     }
 
-    public void expelledNonTeachingStaff() {
+    public void expelledNonTeachingStaff(NonTeachingStaff staff, int nonTeacherId) {
+        System.out.println("\nNotice!!! Notice!!! Notice!!!");
 
+        System.out.println("Non-Teaching: "+staff.getName()+" has been expelled from this School,\n"+
+                "Any notice of his presence in the school premises should be report");
+
+        ArrayList<Integer> ids = ApplicantData.getIdList();
+        boolean validId = false;
+
+        for (int i = 0; i < ids.size(); i++) {
+            if(nonTeacherId == ids.get(i)){
+                System.out.println(nonTeacherId+" "+ids.get(i));
+                ids.remove(i);
+            }
+        }
     }
 
     @Override
-    public void addClass() {
-
+    public String getPersonInformation() {
+        String studentInfo = "Name: "+getName()+"\nPrincipal Id: "+getId()+
+                "\nEmail: "+getEmail()+"\nGender: "+getGender();
+        return studentInfo;
     }
 
 }

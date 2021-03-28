@@ -2,7 +2,7 @@ package com.management.school;
 
 import com.management.school.baseclasses.Person;
 import com.management.school.enums.Courses;
-import com.management.school.utilities.Ids;
+import com.management.school.utilities.ApplicantData;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class Teacher extends Person {
     public Teacher(int id, String name, String password, String email, String gender) {
         super(id, name, password, email, gender);
 
-        ArrayList<Integer> ids = Ids.getIdList();
+        ArrayList<Integer> ids = ApplicantData.getIdList();
         boolean validId = false;
         for (int i = 0; i < ids.size(); i++) {
             if(id == ids.get(i)){
@@ -20,13 +20,17 @@ public class Teacher extends Person {
             }
         }
 
-        if(!validId){
+        System.out.println("student"+ids);
+
+        if(!validId || id == 0){
             throw new NullPointerException("Teacher not allowed to Login, invalid id");
         }
     }
 
     private String gender = getGender().toUpperCase();
     private String name = getName();
+    private int id = getId();
+    private String email = getEmail();
 
     /**
      * Scanner class will show the list of courses a
@@ -40,13 +44,18 @@ public class Teacher extends Person {
 
         System.out.println("Register the course you want to teach:  ");
         Course.loadCoursesName();
+
+        String teacherData = id+","+name+","+Course.getRegisteredCourseName();
+
+        ApplicantData.setTeachersDetails(teacherData);
     }
 
     public String getRegisteredCourse(){
 
         String message = "You will be teaching "+Course.getRegisteredCourseName()+
                 " this semester";
-        if(gender == "MAlE")
+
+        if(gender.toUpperCase().equals("MAlE"))
             return congratulationMessage(name, "Mr", message);
         else
             return congratulationMessage(name, "Mrs",message);
@@ -59,7 +68,7 @@ public class Teacher extends Person {
     public void courseContents(){
         String registeredCourse = Course.getRegisteredCourseName();
         System.out.println("\n");
-        if(gender == "MALE") {
+        if(gender.toUpperCase().equals("MALE")) {
             System.out.println(this.congratulationMessage(name, "Mr",
                     " Your Course Contents on "+registeredCourse));
         } else {
@@ -68,6 +77,13 @@ public class Teacher extends Person {
         }
 
         Course.displayAllCourseContents(registeredCourse);
+    }
+
+    @Override
+    public String getPersonInformation() {
+        String studentInfo = "Name: "+name+"\nTeacher Id: "+id+
+                "\nEmail: "+email+"\nGender: "+gender;
+        return studentInfo;
     }
 
 }

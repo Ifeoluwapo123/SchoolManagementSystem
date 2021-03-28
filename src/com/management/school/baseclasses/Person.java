@@ -24,8 +24,20 @@ public class Person {
         return email;
     }
 
+    public int getId(){
+        return id;
+    }
+
     public String getGender(){
         return gender;
+    }
+
+    public String getPersonInformation(){
+        return "This returns a person information";
+    }
+
+    public String getRole(){
+        return "Person role";
     }
 
 }
