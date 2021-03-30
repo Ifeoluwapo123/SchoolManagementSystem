@@ -9,6 +9,11 @@ public class ApplicantData {
     private static ArrayList<String> studentDetails = new ArrayList<String>();
     private static ArrayList<String> nonTeachingStaffs = new ArrayList<String>();
 
+    /***
+     * Provides a store for ids, staffs information and
+     * students information
+     */
+
     public static void setIdList(int studentId){
         ids.add(studentId);
     }

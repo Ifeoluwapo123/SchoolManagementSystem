@@ -17,7 +17,11 @@ public class Course extends CourseContents implements ICourse {
         super();
     }
 
-    public static void loadCoursesName() {
+    /***
+     * allows teachers to be able to pick a course to teach
+     * return void
+     */
+    public static void selectCourseName() {
         Scanner scanner = new Scanner(System.in);
         String newCourse = scanner.next().toUpperCase();
 
@@ -26,7 +30,7 @@ public class Course extends CourseContents implements ICourse {
             value = Courses.valueOf(newCourse);
         }catch (IllegalArgumentException error){
             System.out.println("Enter valid Subject: ");
-            loadCoursesName();
+            selectCourseName();
             return;
         }
 
@@ -63,6 +67,10 @@ public class Course extends CourseContents implements ICourse {
         return registeredCourseName;
     }
 
+    /***
+     * displays a course from a list of courses randomly for student to take
+     * return void
+     */
     public static void displayRandomCourse(String courseName){
         courseName = courseName.toUpperCase();
 
@@ -100,6 +108,10 @@ public class Course extends CourseContents implements ICourse {
 
     }
 
+    /***
+     * displays a particular course contents for teachers teaching it
+     * return void
+     */
     public static void displayAllCourseContents(String courseName){
 
         if(courseName.equals("MATHEMATICS")){

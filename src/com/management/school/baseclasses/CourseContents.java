@@ -22,6 +22,11 @@ public class CourseContents {
         this.agriculture = null;
     }
 
+
+    /***
+     * generating a random list of courses and their contents for teachers and students
+     */
+
     public static void setMathematics(){
 
         String courseOne = "Course Topic: Set Theory\n"+

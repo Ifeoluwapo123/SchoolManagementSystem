@@ -3,76 +3,69 @@ package com.management.school;
 import com.management.school.enums.Courses;
 
 public class App {
-    public static void main(String[] args){
-        System.out.println("Getting Started");
+     public static void main(String[] args){
+         /**
+          * Student, Teacher, Non_teaching staff instance can't be created now,
+          * Throws an error cause they haven't passed through recruitment or admission stage
+          *   for instance the student instance
+          *   Person student = new Person(22, "John", "Student", "Male"); throws Student can't login
+          */
 
-        int principalId = 654;
-        Principal principal = new Principal(principalId, "Adepoju Oluwagbenga",
-                                      "****", "adepoju", "Male");
+         // Admitting teachers, teachers can login and perform some actions
+         Person teacher1 = principalAdmitApplicant("Chadwick John", "Teacher",29, "Male");
+         Person teacher2 = principalAdmitApplicant("Osten Jonathan", "Teacher", 32, "Male");
+         Person teacher3 = principalAdmitApplicant("Johnson Kurt", "Teacher", 24, "Male");
+         teacher1.applyForCourse();
+         teacher1.courseContents();
+         teacher2.applyForCourse();
+         teacher2.courseContents();
+         teacher3.applyForCourse();
+         teacher3.courseContents();
 
-        Applicant applicant1 = new Applicant("Gabriel John", "Teacher",33);
-        Applicant applicant2 = new Applicant("Adewunmi Bekky", "Student", 22);
-//        applicant1.setApplicantAge(20);
-        Applicant applicant3 = new Applicant("Henry Clinton", "Non_Teaching_Staff", 34);
+         // Admitting Student, Students can login and perform some actions
+         Person student1 = principalAdmitApplicant("Uche Amaka", "Student",23, "Female");
+         Person student2 = principalAdmitApplicant("Augustin Promise", "Student", 20, "Male");
+         Person student3 = principalAdmitApplicant("Joy Christ", "Student",15, "Female");
+         student1.setAddress("5, lintel Street ikeja Lagos");
+         student1.takeCourse("Mathematics");
+         student1.displayPersonInformation();
+         student2.displayPersonInformation();
+         student2.takeCourse("Biology");
+         student3.displayPersonInformation();
+         student3.takeCourse("Mathematics");
 
-        System.out.println("====================================================================================");
+         //Admitting non-teachers, Non-teachers can login and perform some actions
+         Person secretary1 = principalAdmitApplicant("Henry Cleiton", "Non_teaching_staff", 40, "Male");
+         secretary1.displaySalaryPayroll();
+         secretary1.displayStudentLists();
+         secretary1.displayTeachersLists();
+         secretary1.displayNonTeachingStaffLists();
+         secretary1.displayPersonInformation();
+     }
 
-        int applicantId1 = principal.admitApplicant(applicant1.getApplicantName(),
-                applicant1.getApplicantRole(), applicant1.getApplicantAge());
+     public static Person principalAdmitApplicant(String name, String role, int age, String gender){
+         Person principal = new Person(22, "Mr. Austin Gabriel", "Principal", "Male");
 
-        System.out.println("====================================================================================");
+         Person applicant = new Person(name, role, age);
 
-        int applicantId2 = principal.admitApplicant(applicant2.getApplicantName(),
-                applicant2.getApplicantRole(), applicant2.getApplicantAge());
+         //Applicant's information
+         String applicantName = applicant.getApplicantName();
+         String applicantRole = applicant.getApplicantRole();
+         int applicantAge = applicant.getApplicantAge();
 
-        System.out.println("====================================================================================");
+         //Principal admits base on the teacher information
+         int statusId = principal.admitApplicant(applicantName, applicantRole, applicantAge);
 
-        int applicantId3 = principal.admitApplicant(applicant3.getApplicantName(),
-                applicant3.getApplicantRole(), applicant3.getApplicantAge());
+         /**
+          * appointmentStatus returns 0 or number > 0 as an id
+          * if 0, teacher not admitted, else you can now create a teacher instance
+          * */
 
-        System.out.println("====================================================================================");
-
-        if(applicantId1 != 0){
-            Teacher teacher = new Teacher(applicantId1,"Gabriel John", "****",
-                    "gabriel@gmail.com", "Male");
-//            teacher.applyForCourse();
-//            String teacherCourse = teacher.getRegisteredCourse();
-//
-//            if(teacherCourse != null)
-//                System.out.println(teacherCourse);
-//            else
-//                System.out.println("Please Apply for a Course you can teach well");
-//
-//            teacher.courseContents();
-        }
-
-        if(applicantId2 != 0){
-            Student student = new Student(applicantId2,"Adewunmi Bekky", "***","adepoju", "Female");
-            // principal.expelledStudent(student1, applicantId2);
-//            student = new Student(applicantId1,"ggg", "***","adepoju", "Male");
-//            student.setAddress("5, lintel Street ikeja Lagos");
-              student.takeCourse("Mathematics");
-//            System.out.println("====================================================================================");
-//            System.out.println(student.getPersonInformation());
-//            System.out.println("====================================================================================");
-        }
-//
-        if(applicantId3 != 0){
-            NonTeachingStaff staff = new NonTeachingStaff(applicantId3, "Adewala Joseph", "***",
-                    "adewale@gmail.com", "Female");
-            System.out.println("School Payroll\n");
-            System.out.println("====================================================================================");
-            staff.displaySalaryPayroll();
-            System.out.println("====================================================================================");
-            System.out.println("List of Students\n");
-            staff.displayStudentLists();
-            System.out.println("====================================================================================");
-            System.out.println("List of Teachers\n");
-            staff.displayTeachersLists();
-            System.out.println("====================================================================================");
-            System.out.println("List of nonTeachers\n");
-            staff.displayNonTeachingStaffLists();
-            System.out.println("====================================================================================");
-        }
-    }
+         if(statusId != 0){
+            Person person = new Person(statusId, applicantName, applicantRole, gender);
+            return  person;
+         }else{
+             throw new NullPointerException(role+" Application processing terminated");
+         }
+     }
 }
