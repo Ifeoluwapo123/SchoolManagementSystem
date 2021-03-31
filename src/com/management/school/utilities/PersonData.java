@@ -2,7 +2,7 @@ package com.management.school.utilities;
 
 import java.util.ArrayList;
 
-public class ApplicantData {
+public class PersonData {
 
     private static ArrayList<Integer> ids = new ArrayList<Integer>();
     private static ArrayList<String> teachersDetails = new ArrayList<String>();

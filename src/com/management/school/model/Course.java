@@ -1,8 +1,10 @@
-package com.management.school.baseclasses;
+package com.management.school.model;
+
+import com.management.school.interfaces.ICourse;
 
 import java.util.ArrayList;
 
-public class CourseContents {
+public class Course implements ICourse {
     private static ArrayList<String> mathematics;
     private static ArrayList<String> english;
     private static ArrayList<String> geography;
@@ -12,7 +14,7 @@ public class CourseContents {
     private static ArrayList<String> agriculture;
     private static String endCourse = "End of the course. See you next time!!!";
 
-    public CourseContents(){
+    public Course(){
         this.mathematics = null;
         this.english = null;
         this.geography = null;
@@ -21,7 +23,6 @@ public class CourseContents {
         this.chemistry = null;
         this.agriculture = null;
     }
-
 
     /***
      * generating a random list of courses and their contents for teachers and students
@@ -182,4 +183,3 @@ public class CourseContents {
     }
 
 }
-

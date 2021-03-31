@@ -1,19 +1,17 @@
-package com.management.school;
-
-import com.management.school.baseclasses.CourseContents;
+package com.management.school.services.serviceImplementation;
 import com.management.school.enums.Courses;
-import com.management.school.interfaces.ICourse;
+import com.management.school.model.Course;
+import com.management.school.services.ICourse;
 import com.management.school.utilities.Display;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Course extends CourseContents implements ICourse {
+public class CourseActions extends Course implements ICourse {
 
     private static String registeredCourseName;
     private static String message = "You've successfully registered for ";
 
-    public Course(){
+    public CourseActions(){
         super();
     }
 
@@ -128,14 +126,14 @@ public class Course extends CourseContents implements ICourse {
             setBiology();
             Display.displayAllCourseContent(courseName, getBiology());
         }else if(courseName.equals("PHYSICS")){
-           setPhysics();
-           Display.displayAllCourseContent(courseName, getPhysics());
+            setPhysics();
+            Display.displayAllCourseContent(courseName, getPhysics());
         }else if(courseName.equals("CHEMISTRY")){
-           setChemistry();
-           Display.displayAllCourseContent(courseName, getChemistry());
+            setChemistry();
+            Display.displayAllCourseContent(courseName, getChemistry());
         }else if(courseName.equals("AGRICULTURE")){
-           setAgriculture();
-           Display.displayAllCourseContent(courseName, getAgriculture());
+            setAgriculture();
+            Display.displayAllCourseContent(courseName, getAgriculture());
         }else{
             System.out.println("Something wrong somewhere!!");
         }
@@ -143,3 +141,4 @@ public class Course extends CourseContents implements ICourse {
     }
 
 }
+

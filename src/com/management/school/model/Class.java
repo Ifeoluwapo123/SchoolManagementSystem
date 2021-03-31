@@ -1,4 +1,4 @@
-package com.management.school;
+package com.management.school.model;
 
 import com.management.school.interfaces.IClass;
 
@@ -27,3 +27,4 @@ public class Class implements IClass {
         return classes.get(randInt);
     }
 }
+

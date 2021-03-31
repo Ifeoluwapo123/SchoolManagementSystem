@@ -9,7 +9,7 @@ public class Display {
 
 
     /***
-     *  responsible for display complex data on screen
+     *  responsible for displaying complex data on screen
      */
 
     public static void displayRandomCourseContent(String courseName, ArrayList<String> courses){
