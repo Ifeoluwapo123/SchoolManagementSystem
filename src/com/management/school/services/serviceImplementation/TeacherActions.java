@@ -42,7 +42,6 @@ public class TeacherActions implements ITeacherActions{
             else
                 return congratulationMessage(teacher.getName(), "Mrs", message);
         }else{
-            System.out.println();
             return "";
         }
     }
